@@ -306,9 +306,61 @@
   font-size: 0.9rem;
 }
 
-.ann-list > .ann-buy {
-  justify-self: start;
-  margin: -0.1rem 0 0.2rem 2.7rem;
+.ann-stage {
+  position: relative;
+}
+
+.ann-stage .ann-item {
+  padding-right: 3.4rem;
+}
+
+.ann-stage .stage-buy,
+.road-stop-list li.has-stage-buy .stage-buy {
+  position: absolute;
+  top: 0.48rem;
+  right: 0.42rem;
+  z-index: 1;
+}
+
+.story-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin: 0 0 0.25rem;
+}
+
+.story-title-row h2 {
+  margin: 0;
+}
+
+.road-stop-list li.has-stage-buy {
+  position: relative;
+}
+
+.road-stop-list li.has-stage-buy .road-stop-btn {
+  padding-right: 3.4rem;
+}
+
+.stage-buy {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.05rem 0.4rem;
+  border: 1px solid rgba(21, 32, 40, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink-soft);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.45;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.stage-buy:hover {
+  border-color: var(--amber);
+  color: var(--ink);
 }
 
 .story-buy-spot {

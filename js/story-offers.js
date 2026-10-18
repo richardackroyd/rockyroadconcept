@@ -73,58 +73,76 @@ function renderRideButton() {
     .join("")}</ul>`;
 }
 
+function makeStageBuy(item) {
+  const buy = document.createElement("a");
+  buy.className = "stage-buy";
+  buy.href = partnerUrl(item);
+  buy.target = "_blank";
+  buy.rel = "noopener noreferrer";
+  buy.textContent = "Buy";
+  return buy;
+}
+
+function syncStageBuys(host, items) {
+  const hrefs = items.map((item) => partnerUrl(item));
+  const current = [...host.querySelectorAll(":scope > .stage-buy")].map((buy) => buy.getAttribute("href"));
+  if (current.length === hrefs.length && current.every((href, index) => href === hrefs[index])) return;
+  host.querySelectorAll(":scope > .stage-buy").forEach((buy) => buy.remove());
+  for (const item of items) host.append(makeStageBuy(item));
+}
+
 function renderDetail() {
   if (!storyDetail || storyDetail.hidden || !storyDetail.querySelector("h2")) return;
-  if (storyDetail.querySelector(":scope > .story-buy-spot")) return;
-  const title = storyDetail.querySelector("h2")?.textContent || "";
-  const stopNames = [...storyDetail.querySelectorAll(".road-stop-btn strong")].map(
-    (node) => node.textContent
-  );
-  const items = offersFor([title, ...stopNames]);
-  if (!items.length) return;
-  storyDetail.insertAdjacentHTML(
-    "beforeend",
-    `<div class="story-buy-spot">${items
-      .map((item) =>
-        items.length === 1
-          ? buyHere(item)
-          : `<div class="story-buy-row"><span>${escapeHtml(item.name)}</span>${buyHere(item)}</div>`
-      )
-      .join("")}</div>`
-  );
+  storyDetail.querySelector(":scope > .story-buy-spot")?.remove();
+  const heading = storyDetail.querySelector("h2");
+  const items = offersFor([heading.textContent || ""]);
+  const row = heading.parentElement?.classList.contains("story-title-row") ? heading.parentElement : null;
+  if (!items.length) {
+    if (row) {
+      row.querySelectorAll(":scope > .stage-buy").forEach((buy) => buy.remove());
+      row.replaceWith(heading);
+    }
+  } else {
+    const titleRow = row || document.createElement("div");
+    if (!row) {
+      titleRow.className = "story-title-row";
+      heading.replaceWith(titleRow);
+      titleRow.append(heading);
+    }
+    syncStageBuys(titleRow, items);
+  }
+  for (const button of storyDetail.querySelectorAll(".road-stop-btn")) {
+    const stop = button.closest("li");
+    if (!stop) continue;
+    const stopItems = offersFor([button.querySelector("strong")?.textContent || ""]);
+    if (!stopItems.length) {
+      stop.classList.remove("has-stage-buy");
+      stop.querySelectorAll(":scope > .stage-buy").forEach((buy) => buy.remove());
+      continue;
+    }
+    stop.classList.add("has-stage-buy");
+    syncStageBuys(stop, stopItems);
+  }
 }
 
 function attachListBuys(list) {
   if (!list) return;
-  const buttons = [...list.querySelectorAll(":scope > .ann-item")];
-  for (const buy of [...list.querySelectorAll(":scope > .ann-buy")]) {
-    const prev = buy.previousElementSibling;
-    const title = prev?.querySelector("strong")?.textContent || "";
-    const wanted = offersFor([title]);
-    const stillWanted =
-      prev?.classList.contains("ann-item") &&
-      wanted.some((item) => buy.getAttribute("href") === partnerUrl(item));
-    if (!stillWanted) buy.remove();
-  }
-  for (const button of buttons) {
-    const title = button.querySelector("strong")?.textContent || "";
-    let anchor = button;
-    for (const item of offersFor([title])) {
-      const href = partnerUrl(item);
-      const next = anchor.nextElementSibling;
-      if (next?.classList.contains("ann-buy") && next.getAttribute("href") === href) {
-        anchor = next;
-        continue;
-      }
-      const buy = document.createElement("a");
-      buy.className = "btn-buy-here ann-buy";
-      buy.href = href;
-      buy.target = "_blank";
-      buy.rel = "noopener noreferrer";
-      buy.textContent = "Buy";
-      anchor.after(buy);
-      anchor = buy;
+  for (const button of [...list.querySelectorAll(".ann-item")]) {
+    const items = offersFor([button.querySelector("strong")?.textContent || ""]);
+    const stage = button.parentElement?.classList.contains("ann-stage") ? button.parentElement : null;
+    if (!items.length) {
+      if (!stage) continue;
+      stage.querySelectorAll(":scope > .stage-buy").forEach((buy) => buy.remove());
+      stage.replaceWith(button);
+      continue;
     }
+    const host = stage || document.createElement("div");
+    if (!stage) {
+      host.className = "ann-stage";
+      button.replaceWith(host);
+      host.append(button);
+    }
+    syncStageBuys(host, items);
   }
 }
 
