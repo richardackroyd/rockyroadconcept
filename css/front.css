@@ -320,3 +320,49 @@
   margin-top: 0.85rem;
   font-size: 0.88rem;
 }
+
+.story-buys .story-section-title {
+  color: var(--ink);
+}
+
+.story-buys ul {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.story-buys li {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.75rem 0.8rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.story-buy-kind {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--moss);
+}
+
+.story-buys strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+
+.story-buys p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.story-buys a {
+  margin-top: 0.2rem;
+  font-weight: 700;
+  color: var(--amber);
+}

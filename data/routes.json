@@ -2,9 +2,9 @@
   "routes": [
     {
       "id": "dorset-jurassic",
-      "title": "Dorset \u2014 Jurassic Day 1",
+      "title": "Dorset — two days",
       "region": "Dorset",
-      "blurb": "Hub-and-spoke from Dorchester: Weymouth, Portland Bill, and back.",
+      "blurb": "Two days on the Jurassic coast: Weymouth, Portland Bill, and a night at The Mayfair.",
       "gpx": "data/gpx/dorset-jurassic.gpx",
       "distanceKm": 87.6,
       "elevMin": 53.8,
@@ -5231,7 +5231,7 @@
           "lon": -2.441,
           "ele": 53.8,
           "index": 0,
-          "story": "Roll out of Dorchester with a full tank and a loose plan \u2014 the Jurassic coast is the prize, not the clock.",
+          "story": "Roll out of Dorchester with a full tank and a loose plan — the Jurassic coast is the prize, not the clock.",
           "keyRoads": [
             "A35 (brief)",
             "B3157 Coast Road"
@@ -5248,7 +5248,7 @@
               "dir": "right",
               "onto": "B3157",
               "at": "Coast Road junction",
-              "note": "This is the fun bit starting \u2014 blink and you\u2019ll stay on the dull A-road.",
+              "note": "This is the fun bit starting — blink and you’ll stay on the dull A-road.",
               "dirLabel": "Turn right"
             }
           ]
@@ -5257,12 +5257,12 @@
           "t": 0.18,
           "type": "twisty",
           "title": "Osmington bends",
-          "note": "Brilliant flowing corners \u2014 take it tidy.",
+          "note": "Brilliant flowing corners — take it tidy.",
           "lat": 50.632524,
           "lon": -2.270929,
           "ele": 122.5,
           "index": 133,
-          "story": "Osmington bends \u2014 the ribbon tightens and the sea peeks left. This is why you brought the bike.",
+          "story": "Osmington bends — the ribbon tightens and the sea peeks left. This is why you brought the bike.",
           "keyRoads": [
             "B3157"
           ],
@@ -5302,14 +5302,14 @@
               "dir": "left",
               "onto": "harbour front",
               "at": "Weymouth centre",
-              "note": "One-way quirks \u2014 follow bike park signs if you stop.",
+              "note": "One-way quirks — follow bike park signs if you stop.",
               "dirLabel": "Turn left"
             },
             {
               "dir": "right",
               "onto": "A354 / Portland signs",
               "at": "South roundabout",
-              "note": "Don\u2019t follow the ferry queues by mistake.",
+              "note": "Don’t follow the ferry queues by mistake.",
               "dirLabel": "Turn right"
             }
           ]
@@ -5318,12 +5318,12 @@
           "t": 0.55,
           "type": "dull",
           "title": "A-road slog",
-          "note": "Necessary connector \u2014 stay sharp in traffic.",
+          "note": "Necessary connector — stay sharp in traffic.",
           "lat": 50.593672,
           "lon": -2.220458,
           "ele": 108.6,
           "index": 408,
-          "story": "The necessary A-road slog \u2014 keep gaps, stay patient, save the throttle for the Bill.",
+          "story": "The necessary A-road slog — keep gaps, stay patient, save the throttle for the Bill.",
           "keyRoads": [
             "A354"
           ],
@@ -5339,7 +5339,7 @@
               "dir": "bear-right",
               "onto": "Isle of Portland",
               "at": "Chesil causeway",
-              "note": "Crosswind warning when it\u2019s blowing.",
+              "note": "Crosswind warning when it’s blowing.",
               "dirLabel": "Bear right"
             }
           ]
@@ -5353,7 +5353,7 @@
           "lon": -2.395422,
           "ele": 158.4,
           "index": 534,
-          "story": "Lighthouse drama at the end of the land. Wind can snatch the helmet \u2014 short stop, big grin.",
+          "story": "Lighthouse drama at the end of the land. The visitor centre and tower need a ticket, paid at the door. Wind can snatch the helmet — short stop, big grin.",
           "keyRoads": [
             "Portland Bill Road"
           ],
@@ -5369,7 +5369,7 @@
               "dir": "straight",
               "onto": "return via Fortuneswell",
               "at": "Village climb",
-              "note": "Steep hairpins \u2014 first gear friendly.",
+              "note": "Steep hairpins — first gear friendly.",
               "dirLabel": "Continue straight"
             }
           ]
@@ -5377,30 +5377,30 @@
         {
           "t": 0.88,
           "type": "hotel",
-          "title": "Chesil stay tip",
-          "note": "Rider-friendly B&B with secure yard (demo).",
-          "lat": 50.633618,
-          "lon": -2.449274,
-          "ele": 117.2,
-          "index": 653,
-          "story": "Chesil side tip for overnight: secure yard, drying room, and a landlord who gets muddy boots.",
+          "title": "The Mayfair, Weymouth",
+          "note": "Night on the Esplanade, between the two ride days.",
+          "lat": 50.61435,
+          "lon": -2.45305,
+          "ele": 8,
+          "index": 275,
+          "story": "Stay the night at The Mayfair, 99 The Esplanade. Seafront rooms, breakfast in the morning, then back on the bike.",
           "keyRoads": [
-            "B3157",
-            "local lane to stay"
+            "A354",
+            "The Esplanade"
           ],
           "turns": [
             {
               "dir": "left",
-              "onto": "signed B&B lane",
-              "at": "Chesil marker",
-              "note": "Demo stay \u2014 not a live booking link yet.",
+              "onto": "The Esplanade",
+              "at": "Weymouth seafront",
+              "note": "The Mayfair is at number 99, opposite the Jubilee Clock.",
               "dirLabel": "Turn left"
             },
             {
               "dir": "straight",
-              "onto": "B3157 toward Dorchester",
+              "onto": "A354 out of town",
               "at": "Next morning",
-              "note": "Reverse the morning coast road home.",
+              "note": "Breakfast first, then the second day's road.",
               "dirLabel": "Continue straight"
             }
           ]
@@ -7300,12 +7300,12 @@
           "t": 0.0,
           "type": "start",
           "title": "Tavistock",
-          "note": "Classic start \u2014 fuel up.",
+          "note": "Classic start — fuel up.",
           "lat": 50.544,
           "lon": -3.995,
           "ele": 124.0,
           "index": 0,
-          "story": "Tavistock start \u2014 fuel, gloves, and a weather eye on the tors.",
+          "story": "Tavistock start — fuel, gloves, and a weather eye on the tors.",
           "keyRoads": [
             "A386"
           ],
@@ -7335,7 +7335,7 @@
           "lon": -4.019819,
           "ele": 349.1,
           "index": 64,
-          "story": "Moor scramble \u2014 grip changes with every cloud. Smile, roll off, and enjoy the emptiness.",
+          "story": "Moor scramble — grip changes with every cloud. Smile, roll off, and enjoy the emptiness.",
           "keyRoads": [
             "B3212"
           ],
@@ -7344,7 +7344,7 @@
               "dir": "straight",
               "onto": "B3212",
               "at": "open moor",
-              "note": "No centre line in places \u2014 ride your half.",
+              "note": "No centre line in places — ride your half.",
               "dirLabel": "Continue straight"
             },
             {
@@ -7365,7 +7365,7 @@
           "lon": -3.955934,
           "ele": 288.5,
           "index": 116,
-          "story": "Princetown vista \u2014 prison town drama and a sky that goes on forever.",
+          "story": "Princetown vista — prison town drama and a sky that goes on forever.",
           "keyRoads": [
             "B3212",
             "local spur"
@@ -7382,7 +7382,7 @@
               "dir": "left",
               "onto": "B3387",
               "at": "signed Widecombe",
-              "note": "Narrows fast \u2014 vans need space.",
+              "note": "Narrows fast — vans need space.",
               "dirLabel": "Turn left"
             }
           ]
@@ -7396,7 +7396,7 @@
           "lon": -3.904093,
           "ele": 333.6,
           "index": 167,
-          "story": "Widecombe pub \u2014 muddy boots welcome, maps on the wall, no rush.",
+          "story": "Widecombe pub — muddy boots welcome, maps on the wall, no rush.",
           "keyRoads": [
             "B3387"
           ],
@@ -7426,7 +7426,7 @@
           "lon": -3.929355,
           "ele": 316.8,
           "index": 206,
-          "story": "Moor cottage demo stay \u2014 drying room rated five bikes, quiet after dark.",
+          "story": "Moor cottage demo stay — drying room rated five bikes, quiet after dark.",
           "keyRoads": [
             "unclassified lane",
             "A386 return"
@@ -7443,7 +7443,7 @@
               "dir": "straight",
               "onto": "A386 Tavistock",
               "at": "morning exit",
-              "note": "Cattle grid again \u2014 don\u2019t rush it cold.",
+              "note": "Cattle grid again — don’t rush it cold.",
               "dirLabel": "Continue straight"
             }
           ]
@@ -7504,7 +7504,7 @@
       "id": "snake-pass",
       "title": "Snake Pass",
       "region": "Peak District",
-      "blurb": "There-and-back on the A57 classic \u2014 respect the weather.",
+      "blurb": "There-and-back on the A57 classic — respect the weather.",
       "gpx": "data/gpx/snake-pass.gpx",
       "distanceKm": 32.9,
       "elevMin": 185.2,
@@ -9448,7 +9448,7 @@
           "lon": -1.948,
           "ele": 185.2,
           "index": 0,
-          "story": "Glossop check \u2014 fog and ice decide whether Snake is a hero ride or a no-go.",
+          "story": "Glossop check — fog and ice decide whether Snake is a hero ride or a no-go.",
           "keyRoads": [
             "A57"
           ],
@@ -9473,12 +9473,12 @@
           "t": 0.2,
           "type": "twisty",
           "title": "The climb",
-          "note": "Hairpins and grip changes \u2014 this is the ride.",
+          "note": "Hairpins and grip changes — this is the ride.",
           "lat": 53.42101,
           "lon": -1.876554,
           "ele": 434.2,
           "index": 54,
-          "story": "The climb \u2014 hairpins, grip changes, and the reason the road is famous.",
+          "story": "The climb — hairpins, grip changes, and the reason the road is famous.",
           "keyRoads": [
             "A57"
           ],
@@ -9508,7 +9508,7 @@
           "lon": -1.827867,
           "ele": 535.2,
           "index": 95,
-          "story": "Summit pull-in \u2014 views when the cloud lifts. Short stop, then commit to the far side.",
+          "story": "Summit pull-in — views when the cloud lifts. Short stop, then commit to the far side.",
           "keyRoads": [
             "A57"
           ],
@@ -9524,7 +9524,7 @@
               "dir": "straight",
               "onto": "A57 descent",
               "at": "east face",
-              "note": "Faster run \u2014 brakes ready for sudden mist.",
+              "note": "Faster run — brakes ready for sudden mist.",
               "dirLabel": "Continue straight"
             }
           ]
@@ -9538,7 +9538,7 @@
           "lon": -1.78,
           "ele": 487.8,
           "index": 137,
-          "story": "Valley traffic near the reservoirs \u2014 patience beats a scuffed fairing.",
+          "story": "Valley traffic near the reservoirs — patience beats a scuffed fairing.",
           "keyRoads": [
             "A57",
             "A6013 spur (optional)"
@@ -9548,14 +9548,14 @@
               "dir": "u-turn",
               "onto": "A57 westbound",
               "at": "Ladybower area",
-              "note": "Demo turnaround \u2014 pick a safe gap.",
+              "note": "Demo turnaround — pick a safe gap.",
               "dirLabel": "U-turn / turnaround"
             },
             {
               "dir": "straight",
               "onto": "return climb",
               "at": "same road west",
-              "note": "You already know the corners \u2014 colder now.",
+              "note": "You already know the corners — colder now.",
               "dirLabel": "Continue straight"
             }
           ]
@@ -9569,7 +9569,7 @@
           "lon": -1.843921,
           "ele": 501.5,
           "index": 191,
-          "story": "Descent replay toward Glossop \u2014 same corners, less sunlight, more respect.",
+          "story": "Descent replay toward Glossop — same corners, less sunlight, more respect.",
           "keyRoads": [
             "A57"
           ],

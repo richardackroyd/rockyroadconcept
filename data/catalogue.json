@@ -29,6 +29,7 @@
       "id": "dorset-map",
       "title": "Dorset — two days",
       "days": 2,
+      "mapTitle": "Dorset — two days",
       "country": "uk",
       "region": "dorset",
       "place": "UK · Dorset",
@@ -46,7 +47,8 @@
             "partner": "Booking.com",
             "affiliate": "booking",
             "url": "https://www.booking.com/hotel/gb/the-mayfair.en-gb.html",
-            "linkLabel": "Open on Booking.com"
+            "linkLabel": "Open on Booking.com",
+            "storyMatch": ["The Mayfair, Weymouth", "The Mayfair"]
           },
           {
             "id": "portland-bill-ticket",
@@ -55,7 +57,8 @@
             "detail": "Visitor centre and tower ticket. Adult door price £9.50. Paid at the lighthouse by cash or card.",
             "partner": "Portland Bill Lighthouse",
             "url": "https://www.portlandbilllighthouse.co.uk/",
-            "linkLabel": "Ticket prices"
+            "linkLabel": "Ticket prices",
+            "storyMatch": ["Portland Bill lighthouse", "Portland Bill"]
           }
         ]
       }

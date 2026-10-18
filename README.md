@@ -6,7 +6,7 @@ Standalone experiment from the wiki **Create a Journey** idea: explore how the s
 
 - **Front page** (`index.html`) — tagline, country and region filters, **See catalogue** and **See all**, plus a basket
 - **Dorset ride** — two days. **Buy the bundle** packs The Mayfair, Weymouth (Booking.com) and a Portland Bill lighthouse ticket
-- **Map lab** (`ride.html`) — the map page, opened from the UK · Dorset catalogue card
+- **Map lab** (`ride.html`) — the map page. The Dorset ride story links the same Mayfair stay and Portland Bill ticket.
 - **Map exploration + Add a journey** (GPX upload in the browser; no accounts)
 - Three demo rides (Dorset, Dartmoor, Snake Pass) with synthetic dense tracks + elevation + sight annotations
 - **Add a journey**: choose a `.gpx` file — it appears as a new route with start/mid/end icons and simple road segments
