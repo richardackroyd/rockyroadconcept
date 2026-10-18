@@ -6,15 +6,8 @@ const results = document.querySelector("#catalogue-results");
 const resultsTitle = document.querySelector("#catalogue-title");
 const resultsNote = document.querySelector("#catalogue-note");
 const rideList = document.querySelector("#ride-list");
-const basketCount = document.querySelector("#basket-count");
-const basketList = document.querySelector("#basket-items");
-const basketEmpty = document.querySelector("#basket-empty");
-const basketNote = document.querySelector("#basket-note");
-
-const BASKET_KEY = "rrh-basket";
 
 let catalogue = null;
-let basketIds = loadBasket();
 
 function regionsFor(countryId) {
   const country = catalogue.countries.find((item) => item.id === countryId);
@@ -43,100 +36,6 @@ function placeLabel(ride) {
 
 function bundleItems(ride) {
   return ride.bundle?.items ?? [];
-}
-
-function partnerUrl(item) {
-  const affiliate = item.affiliate ? catalogue.affiliates?.[item.affiliate] : null;
-  if (!affiliate?.id) return item.url;
-  const url = new URL(item.url);
-  url.searchParams.set(affiliate.param, affiliate.id);
-  return url.toString();
-}
-
-function loadBasket() {
-  try {
-    const stored = JSON.parse(sessionStorage.getItem(BASKET_KEY) || "[]");
-    return Array.isArray(stored) ? stored.filter((id) => typeof id === "string") : [];
-  } catch {
-    return [];
-  }
-}
-
-function saveBasket() {
-  sessionStorage.setItem(BASKET_KEY, JSON.stringify(basketIds));
-}
-
-function findItem(itemId) {
-  for (const ride of catalogue.rides) {
-    const item = bundleItems(ride).find((entry) => entry.id === itemId);
-    if (item) return { ride, item };
-  }
-  return null;
-}
-
-function bundleInBasket(ride) {
-  const items = bundleItems(ride);
-  return items.length > 0 && items.every((item) => basketIds.includes(item.id));
-}
-
-function addBundle(ride) {
-  for (const item of bundleItems(ride)) {
-    if (!basketIds.includes(item.id)) basketIds.push(item.id);
-  }
-  saveBasket();
-  renderBasket();
-  refreshRideButtons();
-}
-
-function removeItem(itemId) {
-  basketIds = basketIds.filter((id) => id !== itemId);
-  saveBasket();
-  renderBasket();
-  refreshRideButtons();
-}
-
-function renderBasket() {
-  basketList.replaceChildren();
-  const lines = basketIds.map(findItem).filter(Boolean);
-  basketCount.textContent = String(lines.length);
-  basketEmpty.hidden = lines.length > 0;
-  basketList.hidden = lines.length === 0;
-  basketNote.hidden = lines.length === 0;
-
-  for (const { item } of lines) {
-    const row = document.createElement("li");
-    row.className = "basket-item";
-
-    const kind = document.createElement("p");
-    kind.className = "basket-kind";
-    kind.textContent = item.kind === "stay" ? "Stay" : "Ticket";
-
-    const name = document.createElement("h3");
-    name.textContent = item.name;
-
-    const detail = document.createElement("p");
-    detail.className = "basket-detail";
-    detail.textContent = item.detail;
-
-    const actions = document.createElement("div");
-    actions.className = "basket-item-actions";
-
-    const link = document.createElement("a");
-    link.href = partnerUrl(item);
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    link.textContent = item.linkLabel;
-
-    const remove = document.createElement("button");
-    remove.type = "button";
-    remove.className = "btn-text";
-    remove.textContent = "Remove";
-    remove.addEventListener("click", () => removeItem(item.id));
-
-    actions.append(link, remove);
-    row.append(kind, name, detail, actions);
-    basketList.append(row);
-  }
 }
 
 function rideCard(ride) {
@@ -174,17 +73,6 @@ function rideCard(ride) {
   const actions = document.createElement("div");
   actions.className = "ride-card-actions";
 
-  if (items.length > 0) {
-    const buy = document.createElement("button");
-    buy.type = "button";
-    buy.className = "btn-primary";
-    buy.dataset.bundleFor = ride.id;
-    buy.textContent = bundleInBasket(ride) ? "In the basket" : ride.bundle.label;
-    buy.disabled = bundleInBasket(ride);
-    buy.addEventListener("click", () => addBundle(ride));
-    actions.append(buy);
-  }
-
   const mapLink = document.createElement("a");
   mapLink.className = "ride-card-action";
   mapLink.href = ride.href;
@@ -193,16 +81,6 @@ function rideCard(ride) {
   card.append(actions);
   item.append(card);
   return item;
-}
-
-function refreshRideButtons() {
-  for (const ride of catalogue.rides) {
-    const button = rideList.querySelector(`[data-bundle-for="${ride.id}"]`);
-    if (!button) continue;
-    const packed = bundleInBasket(ride);
-    button.textContent = packed ? "In the basket" : ride.bundle.label;
-    button.disabled = packed;
-  }
 }
 
 function renderRides(rides, heading, note) {
@@ -252,10 +130,6 @@ if (!response.ok) {
   throw new Error(`Could not load catalogue (${response.status})`);
 }
 catalogue = await response.json();
-
-basketIds = basketIds.filter((id) => findItem(id));
-saveBasket();
-renderBasket();
 
 countrySelect.replaceChildren();
 for (const country of catalogue.countries) {
