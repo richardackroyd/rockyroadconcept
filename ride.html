@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rocky Road Hub — Route map lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/front.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="top">
+      <div class="brand-block">
+        <p class="brand">Rocky Road Hub</p>
+        <p class="crumb"><a href="index.html">Catalogue</a></p>
+        <h1>Route map lab</h1>
+        <p class="lede">
+          Upload a GPX to add a journey, then feel the same ride four ways — cartoon poster first, then story, elevation, and fly-along.
+        </p>
+      </div>
+
+      <div class="route-controls">
+        <div class="route-picker" role="group" aria-label="Choose a route">
+          <span class="picker-label">Route</span>
+          <div id="route-buttons" class="route-buttons"></div>
+        </div>
+        <div class="add-journey">
+          <span class="picker-label" id="add-journey-label">Add a journey</span>
+          <label class="add-journey-btn" for="gpx-upload">
+            Choose GPX file
+            <input
+              id="gpx-upload"
+              type="file"
+              accept=".gpx,application/gpx+xml,application/xml,text/xml"
+              aria-labelledby="add-journey-label"
+            />
+          </label>
+          <p id="gpx-upload-status" class="add-journey-status" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </header>
+
+    <nav class="tabs" role="tablist" aria-label="Map styles">
+      <button type="button" class="tab is-active" role="tab" aria-selected="true" data-tab="cartoon">
+        Cartoon poster
+      </button>
+      <button type="button" class="tab" role="tab" aria-selected="false" data-tab="story">
+        Story ribbon
+      </button>
+      <button type="button" class="tab" role="tab" aria-selected="false" data-tab="elevation">
+        Elevation drama
+      </button>
+      <button type="button" class="tab" role="tab" aria-selected="false" data-tab="flyalong">
+        Fly-along
+      </button>
+    </nav>
+
+    <main class="stage">
+      <section
+        id="panel-cartoon"
+        class="panel panel--cartoon is-active"
+        role="tabpanel"
+        data-panel="cartoon"
+      >
+        <div class="cartoon-main">
+          <div class="cartoon-wrap">
+            <svg id="cartoon-svg" class="cartoon-svg" viewBox="0 0 960 560" role="img" aria-label="Cartoon route map with named roads"></svg>
+          </div>
+          <div class="road-list-panel">
+            <h2 class="road-list-title">Roads on this ride</h2>
+            <p class="side-hint">Click a road to highlight it on the map. Click a pin for the story and turns.</p>
+            <ul class="road-list" id="cartoon-road-list"></ul>
+          </div>
+          <p class="cartoon-hint">Tap a pin on the map — the panel on the right opens the story, key roads, and turn guide.</p>
+        </div>
+        <aside class="side side--story" id="side-cartoon" aria-live="polite">
+          <div id="cartoon-story-empty" class="story-empty">
+            <h2>Ride story</h2>
+            <p class="side-hint">Pick a point on the cartoon map to open directions for that stretch.</p>
+            <ul class="ann-list" id="list-cartoon"></ul>
+          </div>
+          <div id="cartoon-story-detail" class="story-detail" hidden></div>
+        </aside>
+      </section>
+
+      <section
+        id="panel-story"
+        class="panel"
+        role="tabpanel"
+        data-panel="story"
+        hidden
+      >
+        <div id="map-story" class="map-pane"></div>
+        <aside class="side" id="side-story">
+          <h2>Story stops</h2>
+          <p class="side-hint">Tap a ribbon marker or a stop below.</p>
+          <ul class="ann-list" id="list-story"></ul>
+        </aside>
+      </section>
+
+      <section
+        id="panel-elevation"
+        class="panel"
+        role="tabpanel"
+        data-panel="elevation"
+        hidden
+      >
+        <div class="elev-stack">
+          <div id="map-elevation" class="map-pane map-pane--half"></div>
+          <div class="elev-chart-wrap">
+            <canvas id="elev-canvas" width="900" height="180" aria-label="Elevation profile"></canvas>
+            <p class="elev-readout" id="elev-readout">Hover the profile to scrub the route.</p>
+          </div>
+        </div>
+        <aside class="side" id="side-elevation">
+          <h2>Gradient notes</h2>
+          <p class="side-hint">Segments tint by climb — markers are the same story tags.</p>
+          <ul class="ann-list" id="list-elevation"></ul>
+        </aside>
+      </section>
+
+      <section
+        id="panel-flyalong"
+        class="panel"
+        role="tabpanel"
+        data-panel="flyalong"
+        hidden
+      >
+        <div class="fly-stack">
+          <div id="map-flyalong" class="map-pane map-pane--fly"></div>
+          <div class="fly-controls">
+            <button type="button" id="fly-play" class="btn-play">Play</button>
+            <input type="range" id="fly-scrub" min="0" max="1000" value="0" aria-label="Scrub along route" />
+            <span id="fly-km" class="fly-km">0.0 km</span>
+          </div>
+        </div>
+        <aside class="side" id="side-flyalong">
+          <h2>Passing now</h2>
+          <div class="now-card" id="fly-now">
+            <p class="now-empty">Hit play — sights pop as you ride past.</p>
+          </div>
+          <ul class="ann-list ann-list--compact" id="list-flyalong"></ul>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p>
+        Concept experiment from the wiki <em>Create a Journey</em> idea — not the production Ionic hub.
+      </p>
+    </footer>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="js/app.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rocky Road Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/front.css" />
+  </head>
+  <body class="page-front">
+    <div class="grain" aria-hidden="true"></div>
+
+    <main class="front">
+      <p class="brand">Rocky Road Hub</p>
+      <h1 class="tagline">
+        Ride to find
+        <span class="tagline-arrow" aria-hidden="true">→</span>
+        <span class="tagline-rest">awesome rides, awesome locations, awesome sights</span>
+      </h1>
+
+      <form class="finder" id="finder">
+        <label class="finder-field">
+          <span class="picker-label">Country</span>
+          <select id="country" name="country"></select>
+        </label>
+        <label class="finder-field">
+          <span class="picker-label">Region</span>
+          <select id="region" name="region"></select>
+        </label>
+        <div class="finder-actions">
+          <button type="button" class="btn-primary" id="see-catalogue">See catalogue</button>
+          <button type="button" class="btn-ghost" id="see-all">See all</button>
+        </div>
+      </form>
+
+      <aside class="basket" id="basket" aria-labelledby="basket-heading">
+        <header class="basket-head">
+          <h2 id="basket-heading">Basket</h2>
+          <p class="basket-count"><span id="basket-count">0</span> in the basket</p>
+        </header>
+        <p class="basket-empty" id="basket-empty">Nothing packed yet. A ride bundle lands here.</p>
+        <ul class="basket-items" id="basket-items" hidden></ul>
+        <p class="basket-note" id="basket-note" hidden>
+          The hotel link is the real Booking.com page for The Mayfair. Affiliate tracking is not switched on yet.
+        </p>
+      </aside>
+
+      <section class="catalogue" id="catalogue-results" hidden aria-live="polite">
+        <header class="catalogue-head">
+          <h2 id="catalogue-title">Catalogue</h2>
+          <p id="catalogue-note"></p>
+        </header>
+        <ul class="ride-list" id="ride-list"></ul>
+      </section>
+    </main>
+
+    <script src="js/front.js" type="module"></script>
+  </body>
+</html>

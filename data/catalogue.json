@@ -1,0 +1,64 @@
+{
+  "affiliates": {
+    "booking": {
+      "name": "Booking.com",
+      "param": "aid",
+      "id": ""
+    }
+  },
+  "countries": [
+    {
+      "id": "uk",
+      "name": "UK",
+      "regions": [
+        { "id": "dorset", "name": "Dorset" },
+        { "id": "hampshire", "name": "Hampshire" }
+      ]
+    },
+    {
+      "id": "germany",
+      "name": "Germany",
+      "regions": [
+        { "id": "thueringen", "name": "Thüringen" },
+        { "id": "bavaria", "name": "Bavaria" }
+      ]
+    }
+  ],
+  "rides": [
+    {
+      "id": "dorset-map",
+      "title": "Dorset — two days",
+      "days": 2,
+      "country": "uk",
+      "region": "dorset",
+      "place": "UK · Dorset",
+      "summary": "Two days on the Jurassic coast. Stay the night in Weymouth, and stop at Portland Bill.",
+      "href": "ride.html",
+      "bundle": {
+        "id": "dorset-two-day",
+        "label": "Buy the bundle",
+        "items": [
+          {
+            "id": "mayfair-weymouth",
+            "kind": "stay",
+            "name": "The Mayfair",
+            "detail": "One night in Weymouth, between the two ride days. 99 The Esplanade, DT4 7BE.",
+            "partner": "Booking.com",
+            "affiliate": "booking",
+            "url": "https://www.booking.com/hotel/gb/the-mayfair.en-gb.html",
+            "linkLabel": "Open on Booking.com"
+          },
+          {
+            "id": "portland-bill-ticket",
+            "kind": "ticket",
+            "name": "Portland Bill lighthouse",
+            "detail": "Visitor centre and tower ticket. Adult door price £9.50. Paid at the lighthouse by cash or card.",
+            "partner": "Portland Bill Lighthouse",
+            "url": "https://www.portlandbilllighthouse.co.uk/",
+            "linkLabel": "Ticket prices"
+          }
+        ]
+      }
+    }
+  ]
+}
