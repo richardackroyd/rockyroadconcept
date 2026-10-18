@@ -44,10 +44,11 @@ function offersFor(names) {
 }
 
 function buyHere(item) {
-  return `<a class="btn-buy-here" href="${escapeHtml(partnerUrl(item))}" target="_blank" rel="noopener noreferrer">Buy Here</a>`;
+  return `<a class="btn-buy-here" href="${escapeHtml(partnerUrl(item))}" target="_blank" rel="noopener noreferrer">Buy</a>`;
 }
 
 function renderRideButton() {
+  if (!buyRide || !buyList) return;
   const items = rideItems();
   buyRide.hidden = items.length === 0;
   if (items.length === 0) {
@@ -81,7 +82,6 @@ function renderDetail() {
   );
   const items = offersFor([title, ...stopNames]);
   if (!items.length) return;
-  painting = true;
   storyDetail.insertAdjacentHTML(
     "beforeend",
     `<div class="story-buy-spot">${items
@@ -92,20 +92,60 @@ function renderDetail() {
       )
       .join("")}</div>`
   );
-  painting = false;
+}
+
+function attachListBuys(list) {
+  if (!list) return;
+  const buttons = [...list.querySelectorAll(":scope > .ann-item")];
+  for (const buy of [...list.querySelectorAll(":scope > .ann-buy")]) {
+    const prev = buy.previousElementSibling;
+    const title = prev?.querySelector("strong")?.textContent || "";
+    const wanted = offersFor([title]);
+    const stillWanted =
+      prev?.classList.contains("ann-item") &&
+      wanted.some((item) => buy.getAttribute("href") === partnerUrl(item));
+    if (!stillWanted) buy.remove();
+  }
+  for (const button of buttons) {
+    const title = button.querySelector("strong")?.textContent || "";
+    let anchor = button;
+    for (const item of offersFor([title])) {
+      const href = partnerUrl(item);
+      const next = anchor.nextElementSibling;
+      if (next?.classList.contains("ann-buy") && next.getAttribute("href") === href) {
+        anchor = next;
+        continue;
+      }
+      const buy = document.createElement("a");
+      buy.className = "btn-buy-here ann-buy";
+      buy.href = href;
+      buy.target = "_blank";
+      buy.rel = "noopener noreferrer";
+      buy.textContent = "Buy";
+      anchor.after(buy);
+      anchor = buy;
+    }
+  }
 }
 
 function refresh() {
   if (painting || !catalogue) return;
+  painting = true;
   renderRideButton();
+  attachListBuys(document.querySelector("#list-cartoon"));
+  attachListBuys(document.querySelector("#list-story"));
+  attachListBuys(document.querySelector("#list-flyalong"));
   if (storyDetail && !storyDetail.hidden && storyDetail.querySelector("h2")) renderDetail();
+  painting = false;
 }
 
-buyRide.addEventListener("click", () => {
-  rideOpen = !rideOpen;
-  buyRide.setAttribute("aria-expanded", rideOpen ? "true" : "false");
-  refresh();
-});
+if (buyRide) {
+  buyRide.addEventListener("click", () => {
+    rideOpen = !rideOpen;
+    buyRide.setAttribute("aria-expanded", rideOpen ? "true" : "false");
+    refresh();
+  });
+}
 
 const response = await fetch("data/catalogue.json");
 if (!response.ok) throw new Error(`Could not load catalogue (${response.status})`);
@@ -127,5 +167,9 @@ if (routeButtons) {
     attributes: true,
     attributeFilter: ["class"],
   });
+}
+for (const id of ["list-cartoon", "list-story", "list-flyalong"]) {
+  const list = document.querySelector(`#${id}`);
+  if (list) observer.observe(list, { childList: true });
 }
 refresh();

@@ -208,7 +208,21 @@
 }
 
 .bundle-list li + li {
-  margin-top: 0.2rem;
+  margin-top: 0.45rem;
+}
+
+.bundle-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.bundle-line .btn-buy-here {
+  flex: 0 0 auto;
+  min-width: 4.75rem;
+  margin-top: 0;
+  padding: 0.45rem 0.95rem;
 }
 
 .ride-card-actions {
@@ -290,6 +304,11 @@
   margin: 0;
   color: var(--ink-soft);
   font-size: 0.9rem;
+}
+
+.ann-list > .ann-buy {
+  justify-self: start;
+  margin: -0.1rem 0 0.2rem 2.7rem;
 }
 
 .story-buy-spot {

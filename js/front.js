@@ -38,6 +38,14 @@ function bundleItems(ride) {
   return ride.bundle?.items ?? [];
 }
 
+function partnerUrl(item) {
+  const affiliate = item.affiliate ? catalogue.affiliates?.[item.affiliate] : null;
+  if (!affiliate?.id) return item.url;
+  const url = new URL(item.url);
+  url.searchParams.set(affiliate.param, affiliate.id);
+  return url.toString();
+}
+
 function rideCard(ride) {
   const item = document.createElement("li");
   const card = document.createElement("article");
@@ -63,8 +71,20 @@ function rideCard(ride) {
     list.className = "bundle-list";
     for (const bundleItem of items) {
       const line = document.createElement("li");
+      line.className = "bundle-line";
+
+      const name = document.createElement("span");
       const label = bundleItem.kind === "stay" ? "Stay" : "Ticket";
-      line.textContent = `${label} — ${bundleItem.name}`;
+      name.textContent = `${label} — ${bundleItem.name}`;
+
+      const buy = document.createElement("a");
+      buy.className = "btn-buy-here";
+      buy.href = partnerUrl(bundleItem);
+      buy.target = "_blank";
+      buy.rel = "noopener noreferrer";
+      buy.textContent = "Buy";
+
+      line.append(name, buy);
       list.append(line);
     }
     card.append(list);

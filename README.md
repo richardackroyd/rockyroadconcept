@@ -5,7 +5,7 @@ Standalone experiment from the wiki **Create a Journey** idea: explore how the s
 ## What this is
 
 - **Front page** (`index.html`) — tagline, country and region filters, **See catalogue** and **See all**
-- **Dorset ride** — two days. The catalogue card lists The Mayfair, Weymouth and a Portland Bill lighthouse ticket. **Buy ride** stays on the map page.
+- **Dorset ride** — two days. The Mayfair and Portland Bill each have a **Buy** button. The Mayfair opens its Booking.com page. Affiliate ids are still empty, so the link is the plain hotel page until tracking is switched on.
 - **Map lab** (`ride.html`) — the map page. The Dorset ride story links the same Mayfair stay and Portland Bill ticket.
 - **Map exploration + Add a journey** (GPX upload in the browser; no accounts)
 - Three demo rides (Dorset, Dartmoor, Snake Pass) with synthetic dense tracks + elevation + sight annotations
